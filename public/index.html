@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultorio de Nutrición</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Nutrición Saludable</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#calendario">Calendario</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <div class="contenido-inicio">
+            <div class="texto">
+                <h2>Mejora tu alimentación con nosotros</h2>
+                <p>Descubre cómo una buena nutrición puede cambiar tu vida.</p>
+                <a href="https://wa.me/9631458105" class="btn">Contáctanos</a>
+            </div>
+            <img src="img/nutricion.jpg" alt="Nutrición saludable">
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="contenedor-servicios">
+            <!-- Servicio 1 -->
+            <div class="servicio">
+                <img src="img/nutricion-personalizada.jpg" alt="Nutrición Personalizada">
+                <h3>Nutrición Personalizada</h3>
+                <p>Planes de alimentación diseñados específicamente para ti.</p>
+                <p class="precio">$100/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('nutricion')">Leer más</button>
+                <div id="nutricion" class="descripcion-completa" style="display: none;">
+                    <p>Este servicio incluye un plan de alimentación personalizado, seguimiento semanal y consultas ilimitadas.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Nutrición Personalizada')">Comprar</button>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="servicio">
+                <img src="img/entrenamiento.jpg" alt="Entrenamiento Fitness">
+                <h3>Entrenamiento Fitness</h3>
+                <p>Ejercicios adaptados a tus necesidades y metas.</p>
+                <p class="precio">$80/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('entrenamiento')">Leer más</button>
+                <div id="entrenamiento" class="descripcion-completa" style="display: none;">
+                    <p>Incluye rutinas de ejercicio personalizadas, videos instructivos y seguimiento mensual.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Entrenamiento Fitness')">Comprar</button>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="servicio">
+                <img src="img/bienestar.jpg" alt="Bienestar y Salud">
+                <h3>Bienestar y Salud</h3>
+                <p>Consejos prácticos para mejorar tu calidad de vida.</p>
+                <p class="precio">$60/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('bienestar')">Leer más</button>
+                <div id="bienestar" class="descripcion-completa" style="display: none;">
+                    <p>Incluye consejos sobre sueño, manejo del estrés y hábitos saludables.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Bienestar y Salud')">Comprar</button>
+            </div>
+
+            <!-- Servicio 4 -->
+            <div class="servicio">
+                <img src="img/servicio4.jpg" alt="Asesoría en Suplementación">
+                <h3>Asesoría en Suplementación</h3>
+                <p>Aprende a elegir los mejores suplementos según tus necesidades y objetivos.</p>
+                <p class="precio">$50/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('servicio4')">Leer más</button>
+                <div id="servicio4" class="descripcion-completa" style="display: none;">
+                    <p>Evaluación de suplementos según tu perfil nutricional, recomendaciones basadas en evidencia científica y seguimiento mensual.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Asesoría en Suplementación')">Comprar</button>
+            </div>
+
+            <!-- Servicio 5 -->
+            <div class="servicio">
+                <img src="img/servicio5.jpg" alt="Plan Nutricional para Deportistas">
+                <h3>Plan Nutricional para Deportistas</h3>
+                <p>Alimentación especializada para mejorar el rendimiento deportivo.</p>
+                <p class="precio">$70/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('servicio5')">Leer más</button>
+                <div id="servicio5" class="descripcion-completa" style="display: none;">
+                    <p>Plan de alimentación adaptado a cada fase del entrenamiento, estrategias de hidratación y recuperación, suplementación recomendada y evaluación de rendimiento.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Plan Nutricional para Deportistas')">Comprar</button>
+            </div>
+
+            <!-- Servicio 6 -->
+            <div class="servicio">
+                <img src="img/servicio6.jpg" alt="Coaching Nutricional y Hábitos Saludables">
+                <h3>Coaching Nutricional y Hábitos Saludables</h3>
+                <p>Acompañamiento personalizado para mejorar tus hábitos alimenticios.</p>
+                <p class="precio">$90/mes</p>
+                <button class="btn-leer-mas" onclick="toggleDescripcion('servicio6')">Leer más</button>
+                <div id="servicio6" class="descripcion-completa" style="display: none;">
+                    <p>Sesiones de coaching 1 a 1, estrategias para mantener hábitos saludables a largo plazo, motivación y seguimiento continuo.</p>
+                </div>
+                <button class="btn-comprar" onclick="comprarServicio('Coaching Nutricional y Hábitos Saludables')">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="calendario">
+        <h2>Calendario de Citas</h2>
+        <div id="calendar"></div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="info-contacto">
+            <p><strong>📧 Correo:</strong> <a href="mailto:luis.solis94@unach.mx">luis.solis94@unach.mx.com</a></p>
+            <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/9631458105">Enviar mensaje</a></p>
+        </div>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Nombre" required>
+            <input type="email" id="email" placeholder="Correo" required>
+            <select id="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option value="Nutrición Personalizada">Nutrición Personalizada</option>
+                <option value="Entrenamiento Fitness">Entrenamiento Fitness</option>
+                <option value="Bienestar y Salud">Bienestar y Salud</option>
+                <option value="Asesoría en Suplementación">Asesoría en Suplementación</option>
+                <option value="Plan Nutricional para Deportistas">Plan Nutricional para Deportistas</option>
+                <option value="Coaching Nutricional y Hábitos Saludables">Coaching Nutricional y Hábitos Saludables</option>
+            </select>
+            <textarea id="comments" placeholder="Mensaje" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Consultorio de Nutrición - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/9631458105" target="_blank">
+            <img src="img/whatsapp-icon.jpg" alt="WhatsApp">
+        </a>
+    </div>
+
+    <!-- FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Inicializar el calendario de FullCalendar
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                events: [
+                    // Aquí puedes agregar los eventos de citas
+                    { title: 'Consulta Nutricional', start: '2025-03-02' },
+                    { title: 'Entrenamiento Fitness', start: '2025-03-03' }
+                ]
+            });
+            calendar.render();
+        });
+
+        function toggleDescripcion(servicio) {
+            var descripcion = document.getElementById(servicio);
+            if (descripcion.style.display === "none") {
+                descripcion.style.display = "block";
+            } else {
+                descripcion.style.display = "none";
+            }
+        }
+
+        function comprarServicio(servicio) {
+            alert("Has seleccionado comprar: " + servicio + ". Para más información, contáctanos por WhatsApp.");
+            window.location.href = "https://wa.me/9631458105?text=Me%20interesa%20el%20servicio%20de%20" + encodeURIComponent(servicio);
+        }
+    </script>
+</body>
+</html>

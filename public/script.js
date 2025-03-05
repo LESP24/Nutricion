@@ -1,86 +1,87 @@
 // Mostrar/ocultar descripciones de servicios
 function mostrarDescripcion(id) {
     const descripcion = document.getElementById(id);
-    if (descripcion.style.display === "none") {
-        descripcion.style.display = "block";
-    } else {
-        descripcion.style.display = "none";
-    }
+    descripcion.style.display = (descripcion.style.display === "none") ? "block" : "none";
 }
 
-// Calendario
 document.addEventListener('DOMContentLoaded', function () {
+    // Inicialización del calendario
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        dateClick: function (info) {
-            const fecha = info.dateStr;
-            const nombre = prompt("Ingresa tu nombre:");
-            const correo = prompt("Ingresa tu correo:");
-
-            if (nombre && correo) {
-                // Confirmación de cita
-                const message = `Hola, mi nombre es ${nombre}. Mi correo es ${correo}. Me gustaría agendar una cita para el día ${fecha}.`;
-                const encodedMessage = encodeURIComponent(message);
-
-                // Enviar mensaje de WhatsApp
-                window.open(`https://wa.me/9631458105?text=${encodedMessage}`);
-
-                // Guardar la cita (puedes integrarlo a tu backend si lo deseas)
-                fetch('http://localhost:3000/confirmar-cita', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nombre, correo, fecha })
-                })
-                .then(response => response.text())
-                .then(result => alert('Cita agendada con éxito: ' + result))
-                .catch(error => alert('Error al agendar la cita: ' + error));
-            } else {
-                alert('Por favor ingresa todos los datos para agendar la cita.');
-            }
-        },
-        events: [
-            { title: 'Cita 1', start: '2023-10-10' },
-            { title: 'Cita 2', start: '2023-10-15' }
-        ]
+        selectable: true, // Permite seleccionar fechas
+        dateClick: function(info) {
+            // Mostrar el formulario de cita
+            document.getElementById('formulario-cita').style.display = 'block';
+            
+            // Rellenar el campo de fecha con la fecha seleccionada
+            document.getElementById('fecha-cita').value = info.dateStr;
+        }
     });
     calendar.render();
 });
 
-// Formulario de Contacto y WhatsApp
-document.getElementById('contactForm').onsubmit = function (event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const servicio = document.getElementById('servicio').value;
-    const comments = document.getElementById('comments').value;
+// Función para cerrar el formulario de cita
+function cerrarFormulario() {
+    document.getElementById('formulario-cita').style.display = 'none';
+}
 
-    const message = `Hola, mi nombre es ${name}. Mi correo es ${email}. Me interesa el servicio de ${servicio}. ${comments}`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/9631458105?text=${encodedMessage}`);
-};
+// Manejar el envío del formulario de cita
+document.getElementById("form-cita").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
 
+    // Obtén los valores de los campos del formulario
+    const nombre = document.getElementById("nombre-cita").value.trim();
+    const correo = document.getElementById("correo-cita").value.trim();
+    const fecha = document.getElementById("fecha-cita").value.trim();
+
+    // Verifica que todos los campos estén llenos
+    if (nombre === "" || correo === "" || fecha === "") {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // Construye el mensaje que se enviará por WhatsApp
+    const mensajeWhatsApp = `Hola, soy ${nombre}. Mi correo es ${correo}. Quiero agendar una cita para el ${fecha}.`;
+
+    // Codifica el mensaje para que sea válido en una URL
+    const mensajeCodificado = encodeURIComponent(mensajeWhatsApp);
+
+    // Reemplaza "529631458105" con tu número de WhatsApp (en formato internacional, sin el signo +)
+    const numeroWhatsApp = "529631458105"; // Ejemplo: 521234567890 para México
+
+    // Crea la URL de WhatsApp con el número y el mensaje
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+
+    // Redirige a WhatsApp
+    window.location.href = urlWhatsApp; // Abre en la misma ventana
+    // window.open(urlWhatsApp, "_blank"); // Abre en una nueva pestaña
+});
 // Respuesta automática de WhatsApp (opcional)
 const whatsappToken = 'your_whatsapp_api_token'; // Reemplaza con tu token de API de WhatsApp
 
 function enviarRespuestaAutomatica(mensaje) {
-    fetch('https://api.whatsapp.com/send', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${whatsappToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            to: '9631458105', // Número de WhatsApp
-            text: mensaje
+    if (whatsappToken !== 'your_whatsapp_api_token') { // Verifica si el token ha sido configurado
+        fetch('https://api.whatsapp.com/send', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${whatsappToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: '9631458105', // Número de WhatsApp
+                text: mensaje
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Respuesta enviada', data))
-    .catch(error => console.error('Error al enviar respuesta automática:', error));
+        .then(response => response.json())
+        .then(data => console.log('Respuesta enviada', data))
+        .catch(error => console.error('Error al enviar respuesta automática:', error));
+    } else {
+        console.log("Token de API de WhatsApp no configurado.");
+    }
 }
 
 // Llamada para enviar respuesta automática al hacer clic en el botón de WhatsApp
-document.querySelector('.whatsapp-float a').addEventListener('click', function () {
+document.querySelector('.whatsapp-btn a').addEventListener('click', function () {
     enviarRespuestaAutomatica('¡Hola! Gracias por tu mensaje. ¿En qué servicio estás interesado?');
 });

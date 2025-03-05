@@ -94,7 +94,12 @@ nav ul li a:hover {
     font-weight: bold;
     border-radius: 5px;
     transition: background 0.3s;
+    text-align: center;     /* Alinear texto al centro */
+    padding: 12px 25px;     /* Ajustar padding para mejor apariencia */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
+
+
 
 .btn:hover {
     background: #27ae60;
@@ -104,10 +109,12 @@ nav ul li a:hover {
 /* ---- Servicios ---- */
 .contenedor-servicios {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 20px;
+    gap: 20px;
 }
+
 
 .servicio {
     background: white;
@@ -120,6 +127,8 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
 }
 
+
+
 .servicio:hover {
     transform: translateY(-5px); /* Efecto de levantado al pasar el mouse */
 }
@@ -129,13 +138,21 @@ nav ul li a:hover {
     height: 200px;
     border-radius: 8px;
     object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .precio {
     font-weight: bold;
     color: #2ecc71;
     margin: 10px 0;
+    text-align: center;      /* Alinear texto al centro */
+    font-size: 1.1em;        /* Tamaño ligeramente mayor */
 }
+
+
 
 .btn-leer-mas {
     background-color: #2ecc71;
@@ -145,7 +162,14 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top: auto;
+    width: 80%;
+    align-self: center;
+    text-align: center; /* Alinear texto al centro */
+    font-weight: bold;   /* Resaltar el texto */
 }
+
+
 
 .btn-leer-mas:hover {
     background-color: #27ae60;
@@ -239,4 +263,39 @@ footer {
     background-color: #2ecc71;
     color: white;
     margin-top: 20px;
+}
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+form input, form textarea, form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
 }
